@@ -1,0 +1,61 @@
+/*Weapon.cs*/
+
+using System;
+using UnityEngine;
+
+[Serializable]
+[CreateAssetMenu(fileName = "Weapon", menuName = "DataBase/CreateWeapon")]
+public class Weapon : ScriptableObject
+{
+    public Type weaponType;              //種類
+    public String weaponName;            //名前
+    public int weaponPower;              //攻撃力
+
+    public enum Type
+    {
+        sword,
+    }
+
+    public Weapon(Weapon weapon)
+    {
+        this.weaponType = weapon.weaponType;
+        this.weaponName = weapon.weaponName;
+        this.weaponPower = weapon.weaponPower;
+    }
+}
+
+
+
+/*DataBase.cs*/
+以下のプログラムを追加する。
+
+//折り畳み判定
+private bool weaponOpen;
+
+if (dataBase.weapons != null)
+            {
+                weaponOpen = EditorGUILayout.BeginFoldoutHeaderGroup(weaponOpen, "Weapons");
+                if (weaponOpen)
+                {
+                    using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+                    {
+                        for (int i = 0; i < dataBase.weapons.Count; i++)
+                        {
+                            if (dataBase.weapons[i] != null)
+                            {
+                                GUI.backgroundColor = Color.gray;
+                                using (new GUILayout.HorizontalScope(EditorStyles.toolbar))
+                                {
+                                    //ラベル
+                                    GUILayout.Label(dataBase.weapons[i].weaponName);
+                                }
+                                GUI.backgroundColor = defaultColor;
+
+                                dataBase.weapons[i].weaponPower = EditorGUILayout.IntField("Power", dataBase.weapons[i].weaponPower);
+                            }
+                        }
+                    }
+                }
+                EditorGUILayout.EndFoldoutHeaderGroup();
+            }
+}

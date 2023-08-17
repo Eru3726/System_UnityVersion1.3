@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c7149fdadf79b40b65a590a1791abc, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  enemyName: "\u30BE\u30F3\u30D3"
+  enemySprite: {fileID: 7482667652216324306, guid: c5cb3fbb0a75be442aede34393403ac7, type: 3}
+  enemyMaxHp: 25
+  enemyOffensivePower: 5
+  enemyDefensePower: 3
+  enemySpeed: 3
