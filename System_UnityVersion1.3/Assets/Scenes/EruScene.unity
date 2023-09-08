@@ -245,9 +245,8 @@ GameObject:
   - component: {fileID: 97728697}
   - component: {fileID: 97728699}
   - component: {fileID: 97728695}
-  - component: {fileID: 97728696}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,22 +268,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &97728696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97728694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  moveLeftRight:
-    moveType: 1
-    chkType: 2
 --- !u!212 &97728697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -638,7 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921127627}
   m_Layer: 0
-  m_Name: MoveLeftRight
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,30 +656,13 @@ GameObject:
   - component: {fileID: 1010013390}
   - component: {fileID: 1010013389}
   - component: {fileID: 1010013388}
-  - component: {fileID: 1010013387}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1010013387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010013386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  moveLeftRight:
-    moveType: 1
-    chkType: 3
 --- !u!58 &1010013388
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1225,30 +1191,13 @@ GameObject:
   - component: {fileID: 1797553733}
   - component: {fileID: 1797553732}
   - component: {fileID: 1797553731}
-  - component: {fileID: 1797553730}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1797553730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797553729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  moveLeftRight:
-    moveType: 1
-    chkType: 1
 --- !u!58 &1797553731
 CircleCollider2D:
   m_ObjectHideFlags: 0

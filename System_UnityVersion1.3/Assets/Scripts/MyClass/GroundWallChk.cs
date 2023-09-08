@@ -1,9 +1,10 @@
 using UnityEngine;
 
 [System.Serializable]
-public class MoveLeftRight
+public class GroundWallChk
 {
-    private LayerMask StageLayer = 1 << 18;
+    [SerializeField,Header("チェックレイヤー")]
+    private LayerMask chkLayer;
     private float index = 1;
 
     public enum MOVE_TYPE
@@ -25,60 +26,63 @@ public class MoveLeftRight
     [Header("チェック内容")]
     public Chk_TYPE chkType = Chk_TYPE.NONE;
 
+    [SerializeField, Header("レイの始点")]
+    private Transform tr;
 
-    public float MoveChk(Transform transform)
+
+    public float GWChk()
     {
         if(chkType == Chk_TYPE.NONE)
         {
-            index = ChgDIrection(transform);
+            index = ChgDIrection();
         }
         if (chkType == Chk_TYPE.GROUND)
         {
-            if (!GroundChk(transform)) index = ChgDIrection(transform);
+            if (!GroundChk()) index = ChgDIrection();
         }
         else if (chkType == Chk_TYPE.WALL)
         {
-            if (WallChk(transform)) index = ChgDIrection(transform);
+            if (WallChk()) index = ChgDIrection();
         }
         else if (chkType == Chk_TYPE.ALL)
         {
-            if (!GroundChk(transform) || WallChk(transform)) index = ChgDIrection(transform);
+            if (!GroundChk() || WallChk()) index = ChgDIrection();
         }
 
         return index;
     }
 
-    private bool GroundChk(Transform transform)
+    private bool GroundChk()
     {
         // transform.localScaleの正負によってEnemyをx方向に反転する
-        Vector3 scale = transform.localScale;
+        Vector3 scale = tr.localScale;
         // 始点が常にEnemyの進行方向に出るようにstartpositionを決める
-        Vector3 startposition = transform.position + transform.right * 0.5f * scale.x;
+        Vector3 startposition = tr.position + tr.right * 0.5f * scale.x;
         // startpostionから足元までを終点とする
-        Vector3 endposition = startposition - transform.up * 0.55f;
+        Vector3 endposition = startposition - tr.up * 0.55f;
 
         // Debug用に始点と終点を表示する
         Debug.DrawLine(startposition, endposition, Color.red);
 
         // Physics2D.Linecastを使い、ベクトルとStageLayerが接触していたらTrueを返す
-        return Physics2D.Linecast(startposition, endposition, StageLayer);
+        return Physics2D.Linecast(startposition, endposition, chkLayer);
     }
 
-    private bool WallChk(Transform transform)
+    private bool WallChk()
     {
-        Vector3 scale = transform.localScale;
+        Vector3 scale = tr.localScale;
 
-        Vector3 startposition = transform.position + transform.right * 0.3f * scale.x;
+        Vector3 startposition = tr.position + tr.right * 0.3f * scale.x;
 
-        Vector3 endposition = startposition + transform.right * 0.3f * scale.x;
+        Vector3 endposition = startposition + tr.right * 0.3f * scale.x;
 
         Debug.DrawLine(startposition, endposition, Color.blue);
 
-        return Physics2D.Linecast(startposition, endposition, StageLayer);
+        return Physics2D.Linecast(startposition, endposition, chkLayer);
     }
 
     // 方向転換をする
-    private float ChgDIrection(Transform transform)
+    private float ChgDIrection()
     {
         if (chkType != Chk_TYPE.NONE)
         {
@@ -86,7 +90,7 @@ public class MoveLeftRight
             else moveType = MOVE_TYPE.RIGHT;
         }
         float _index = 0;
-        float scale = transform.localScale.x;
+        float scale = tr.localScale.x;
         if (moveType == MOVE_TYPE.STOP)
         {
             _index = 0;
@@ -101,7 +105,7 @@ public class MoveLeftRight
             scale = -Mathf.Abs(scale);
             _index = -1;
         }
-        transform.localScale = new Vector3(scale, transform.localScale.y, transform.localScale.z);
+        tr.localScale = new Vector3(scale, tr.localScale.y, tr.localScale.z);
 
         return _index;
     }
