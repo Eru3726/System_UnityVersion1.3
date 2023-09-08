@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8994035}
   - component: {fileID: 8994034}
   - component: {fileID: 8994033}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Wall1
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 97728697}
   - component: {fileID: 97728699}
   - component: {fileID: 97728695}
+  - component: {fileID: 97728696}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -268,6 +269,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &97728696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97728694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  groundWallChk:
+    chkLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    moveType: 1
+    chkType: 2
+    tr: {fileID: 97728698}
 --- !u!212 &97728697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -366,7 +387,7 @@ GameObject:
   - component: {fileID: 226129005}
   - component: {fileID: 226129004}
   - component: {fileID: 226129003}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Ground1
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -512,7 +533,7 @@ GameObject:
   - component: {fileID: 793243359}
   - component: {fileID: 793243358}
   - component: {fileID: 793243357}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Ground
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -656,6 +677,7 @@ GameObject:
   - component: {fileID: 1010013390}
   - component: {fileID: 1010013389}
   - component: {fileID: 1010013388}
+  - component: {fileID: 1010013387}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -663,6 +685,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1010013387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010013386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  groundWallChk:
+    chkLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    moveType: 1
+    chkType: 3
+    tr: {fileID: 1010013391}
 --- !u!58 &1010013388
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -777,7 +819,7 @@ GameObject:
   - component: {fileID: 1209332036}
   - component: {fileID: 1209332035}
   - component: {fileID: 1209332034}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Wall
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -887,7 +929,7 @@ GameObject:
   - component: {fileID: 1509402033}
   - component: {fileID: 1509402035}
   - component: {fileID: 1509402034}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Wall2
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -1080,7 +1122,7 @@ GameObject:
   - component: {fileID: 1675995346}
   - component: {fileID: 1675995345}
   - component: {fileID: 1675995344}
-  m_Layer: 18
+  m_Layer: 6
   m_Name: Ground2
   m_TagString: grand
   m_Icon: {fileID: 0}
@@ -1191,6 +1233,7 @@ GameObject:
   - component: {fileID: 1797553733}
   - component: {fileID: 1797553732}
   - component: {fileID: 1797553731}
+  - component: {fileID: 1797553730}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -1198,6 +1241,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1797553730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797553729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4070ee4331db6479173d23d383b4be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  groundWallChk:
+    chkLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    moveType: 1
+    chkType: 1
+    tr: {fileID: 1797553734}
 --- !u!58 &1797553731
 CircleCollider2D:
   m_ObjectHideFlags: 0
