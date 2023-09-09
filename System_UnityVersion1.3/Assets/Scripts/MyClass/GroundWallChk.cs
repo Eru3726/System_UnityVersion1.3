@@ -29,6 +29,12 @@ public class GroundWallChk
     [SerializeField, Header("レイの始点")]
     private Transform tr;
 
+    [SerializeField, Header("グラウンドチェックの距離")]
+    private float groundChkDir = 0.5f;
+
+    [SerializeField, Header("ウォールチェックの距離")]
+    private float wallChkDir = 0.3f;
+
 
     public float GWChk()
     {
@@ -57,9 +63,9 @@ public class GroundWallChk
         // transform.localScaleの正負によってEnemyをx方向に反転する
         Vector3 scale = tr.localScale;
         // 始点が常にEnemyの進行方向に出るようにstartpositionを決める
-        Vector3 startposition = tr.position + tr.right * 0.5f * scale.x;
+        Vector3 startposition = tr.position + tr.right * groundChkDir * scale.x;
         // startpostionから足元までを終点とする
-        Vector3 endposition = startposition - tr.up * 0.55f;
+        Vector3 endposition = startposition - tr.up * (groundChkDir + 0.05f);
 
         // Debug用に始点と終点を表示する
         Debug.DrawLine(startposition, endposition, Color.red);
@@ -72,9 +78,9 @@ public class GroundWallChk
     {
         Vector3 scale = tr.localScale;
 
-        Vector3 startposition = tr.position + tr.right * 0.3f * scale.x;
+        Vector3 startposition = tr.position + tr.right * wallChkDir * scale.x;
 
-        Vector3 endposition = startposition + tr.right * 0.3f * scale.x;
+        Vector3 endposition = startposition + tr.right * wallChkDir * scale.x;
 
         Debug.DrawLine(startposition, endposition, Color.blue);
 
