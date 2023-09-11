@@ -27,7 +27,7 @@ public class EnemyGWC : MonoBehaviour
     {
         rb2d.velocity = new Vector2(speed * index, rb2d.velocity.y);
 
-        if (groundChk.LineChk() || wallChk.LineChk())
+        if (!groundChk.LineChk() || wallChk.LineChk())
         {
             float scale = myTransform.localScale.x;
             scale *= -1;
