@@ -1,4 +1,4 @@
-//ƒZ[ƒu‚·‚é‚½‚ß‚Ì€–Ú
+//ã‚»ãƒ¼ãƒ–ã™ã‚‹ãŸã‚ã®é …ç›®
 
 [System.Serializable]
 public class SaveData

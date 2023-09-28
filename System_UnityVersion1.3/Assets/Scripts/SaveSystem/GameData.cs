@@ -1,4 +1,4 @@
-//�Q�[�����ŕێ����Ă����������ځi�����̒l�͔C�Ӂj
+//ゲーム中で保持しておきたい項目（初期の値は任意）
 
 public class GameData
 {
