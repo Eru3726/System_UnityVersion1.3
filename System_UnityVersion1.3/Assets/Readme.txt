@@ -85,6 +85,13 @@ fadeにFadeCanvasをアタッチしてください。
 
 
 
+/*更新履歴*/
+v1.0.0 フェードシステム完成
+
+v1.1.0 文字コード変更
+
+
+
 /*参考サイト*/
 https://4you.bz/rule
 http://kerotan-factory.xblog.jp/article/463659352.html
