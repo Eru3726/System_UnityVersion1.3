@@ -8,7 +8,7 @@ public class DebugStart : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //¶ƒNƒŠƒbƒN‚µ‚½‚ç1•b‚©‚¯‚ÄFadeIn‚µALoadScene‚ÉˆÚs‚·‚é
+            //å·¦ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚‰1ç§’ã‹ã‘ã¦FadeInã—ã€LoadSceneã«ç§»è¡Œã™ã‚‹
             fade.FadeIn(1f, () => SceneManager.LoadScene("LoadScene"));
         }
     }

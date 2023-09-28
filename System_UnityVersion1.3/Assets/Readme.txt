@@ -59,6 +59,13 @@ async.progressは読み込みの進捗を表しています。(0～1)
 
 
 
+/*更新履歴*/
+v1.0.0 LoadSystem完成
+
+v1.1.0 文字コード変更
+
+
+
 /*参考サイト*/
 https://masayuki5160.hatenablog.com/entry/2014/01/21/235641
 http://nekobata.blog.jp/archives/1034459004.html
