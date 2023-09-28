@@ -16,12 +16,12 @@ public class DebugScript : MonoBehaviour
 
     void Update()
     {
-        typeText.text = "TypeF" + type;
-        resilienceText.text = "ResilienceF" + resilience;
-        maxHpText.text = "MaxHpF" + maxHp.ToString();
-        offensText.text = "OffensF" + offens.ToString();
-        defnseText.text = "DefnseF" + defnse.ToString();
-        speedText.text = "SpeedF" + speed.ToString();
+        typeText.text = "Typeï¼š" + type;
+        resilienceText.text = "Resilienceï¼š" + resilience;
+        maxHpText.text = "MaxHpï¼š" + maxHp.ToString();
+        offensText.text = "Offensï¼š" + offens.ToString();
+        defnseText.text = "Defnseï¼š" + defnse.ToString();
+        speedText.text = "Speedï¼š" + speed.ToString();
 
         if (s)
         {

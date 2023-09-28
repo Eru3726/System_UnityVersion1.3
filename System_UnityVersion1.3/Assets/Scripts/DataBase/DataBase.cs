@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//create‚©‚ç¶¬‚Å‚«‚é‚æ‚¤‚É‚·‚é
+//createã‹ã‚‰ç”Ÿæˆã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 [CreateAssetMenu(fileName = "DataBase", menuName = "DataBase/CreateDataBase")]
 public class DataBase : ScriptableObject
 {
-    //ƒŠƒXƒg‚Ìì¬
+    //ãƒªã‚¹ãƒˆã®ä½œæˆ
     public List<Enemy> enemys = new List<Enemy>();
     public List<Item> items = new List<Item>();
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "DataBase/CreateItem")]
 public class Item : ScriptableObject
 {
-    public Type itemType;               //í—Ş
-    public String itemName;             //–¼‘O
-    public Sprite itemSprite;           //‰æ‘œ
-    public int itemResilience;          //‰ñ•œ—Í
+    public Type itemType;               //ç¨®é¡
+    public String itemName;             //åå‰
+    public Sprite itemSprite;           //ç”»åƒ
+    public int itemResilience;          //å›å¾©åŠ›
 
     public enum Type
     {

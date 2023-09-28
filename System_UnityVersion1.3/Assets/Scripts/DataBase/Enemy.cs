@@ -1,37 +1,37 @@
 using System;
 using UnityEngine;
 
-//create‚©‚ç¶¬‚Å‚«‚é‚æ‚¤‚É‚·‚é
+//createã‹ã‚‰ç”Ÿæˆã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 [Serializable]
 [CreateAssetMenu(fileName = "Enemy", menuName = "DataBase/CreateEnemy")]
 public class Enemy : ScriptableObject
 {
-    public Type enemyType;              //í—Ş
-    public String enemyName;            //–¼‘O
-    public Sprite enemySprite;          //‰æ‘œ
-    public int enemyMaxHp;              //‘Ì—Í
-    public int enemyOffensivePower;     //UŒ‚—Í
-    public int enemyDefensePower;       //–hŒä—Í
-    public float enemySpeed;            //‘¬“x
+    public Type enemyType;              //ç¨®é¡
+    public String enemyName;            //åå‰
+    public Sprite enemySprite;          //ç”»åƒ
+    public int enemyMaxHp;              //ä½“åŠ›
+    public int enemyOffensivePower;     //æ”»æ’ƒåŠ›
+    public int enemyDefensePower;       //é˜²å¾¡åŠ›
+    public float enemySpeed;            //é€Ÿåº¦
 
     /// <summary>
-    /// ƒLƒƒƒ‰‚Ì—ñ‹“
+    /// ã‚­ãƒ£ãƒ©ã®åˆ—æŒ™
     /// </summary>
     public enum Type
     {
-        //ƒLƒƒƒ‰‚ğ‘‚â‚µ‚½‚¢ê‡‚Í‚±‚±‚É–¼‘O‚ğ’Ç‰Á‚·‚é
+        //ã‚­ãƒ£ãƒ©ã‚’å¢—ã‚„ã—ãŸã„å ´åˆã¯ã“ã“ã«åå‰ã‚’è¿½åŠ ã™ã‚‹
         Slime,
         Zombie,
         Bat,
     }
 
     /// <summary>
-    /// •Ï”‚ğ‘ã“ü
+    /// å¤‰æ•°ã‚’ä»£å…¥
     /// </summary>
     /// <param name="enemy"></param>
     public Enemy(Enemy enemy)
     {
-        //•Ï”‚ğ‘‚â‚µ‚½ê‡‚Í‚±‚±‚Å‘ã“ü‚Å‚«‚é‚æ‚¤‚É‚·‚é
+        //å¤‰æ•°ã‚’å¢—ã‚„ã—ãŸå ´åˆã¯ã“ã“ã§ä»£å…¥ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
         this.enemyType = enemy.enemyType;
         this.enemyName = enemy.enemyName;
         this.enemySprite = enemy.enemySprite;
