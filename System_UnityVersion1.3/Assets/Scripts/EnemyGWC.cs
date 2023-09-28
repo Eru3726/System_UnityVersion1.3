@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemyGWC : MonoBehaviour
 {
-    [SerializeField, Header("ˆÚ“®‘¬“x")]
+    [SerializeField, Header("ç§»å‹•é€Ÿåº¦")]
     private float speed;
 
-    [SerializeField, Header("°”»’è‚ÌƒŒƒCİ’è")]
+    [SerializeField, Header("åºŠåˆ¤å®šã®ãƒ¬ã‚¤è¨­å®š")]
     private RayLine groundChk = new RayLine();
 
-    [SerializeField,Header("•Ç”»’è‚ÌƒŒƒCİ’è")]
+    [SerializeField,Header("å£åˆ¤å®šã®ãƒ¬ã‚¤è¨­å®š")]
     private RayLine wallChk = new RayLine();
 
     private Transform myTransform;

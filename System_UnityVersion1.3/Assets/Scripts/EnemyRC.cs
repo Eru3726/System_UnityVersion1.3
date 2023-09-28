@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyRC : MonoBehaviour
 {
-    [SerializeField, Header("ƒŒƒC‚Ìİ’è")]
+    [SerializeField, Header("ãƒ¬ã‚¤ã®è¨­å®š")]
     private RayCircle rayCircle = new RayCircle();
 
     private SpriteRenderer sr;

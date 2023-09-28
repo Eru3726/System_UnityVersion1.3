@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class GroundWallChk
 {
-    [SerializeField,Header("ƒ`ƒFƒbƒNƒŒƒCƒ„[")]
+    [SerializeField,Header("ãƒã‚§ãƒƒã‚¯ãƒ¬ã‚¤ãƒ¤ãƒ¼")]
     private LayerMask chkLayer;
     private float index = 1;
 
@@ -13,7 +13,7 @@ public class GroundWallChk
         RIGHT,
         LEFT,
     }
-    [Header("ˆÚ“®ó‘Ô")]
+    [Header("ç§»å‹•çŠ¶æ…‹")]
     public MOVE_TYPE moveType = MOVE_TYPE.RIGHT;
 
     public enum Chk_TYPE
@@ -23,16 +23,16 @@ public class GroundWallChk
         WALL,
         ALL,
     }
-    [Header("ƒ`ƒFƒbƒN“à—e")]
+    [Header("ãƒã‚§ãƒƒã‚¯å†…å®¹")]
     public Chk_TYPE chkType = Chk_TYPE.NONE;
 
-    [SerializeField, Header("ƒŒƒC‚Ìn“_")]
+    [SerializeField, Header("ãƒ¬ã‚¤ã®å§‹ç‚¹")]
     private Transform tr;
 
-    [SerializeField, Header("ƒOƒ‰ƒEƒ“ƒhƒ`ƒFƒbƒN‚Ì‹——£")]
+    [SerializeField, Header("ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯ã®è·é›¢")]
     private float groundChkDir = 0.5f;
 
-    [SerializeField, Header("ƒEƒH[ƒ‹ƒ`ƒFƒbƒN‚Ì‹——£")]
+    [SerializeField, Header("ã‚¦ã‚©ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯ã®è·é›¢")]
     private float wallChkDir = 0.3f;
 
 
@@ -60,17 +60,17 @@ public class GroundWallChk
 
     private bool GroundChk()
     {
-        // transform.localScale‚Ì³•‰‚É‚æ‚Á‚ÄEnemy‚ğx•ûŒü‚É”½“]‚·‚é
+        // transform.localScaleã®æ­£è² ã«ã‚ˆã£ã¦Enemyã‚’xæ–¹å‘ã«åè»¢ã™ã‚‹
         Vector3 scale = tr.localScale;
-        // n“_‚ªí‚ÉEnemy‚Ìis•ûŒü‚Éo‚é‚æ‚¤‚Éstartposition‚ğŒˆ‚ß‚é
+        // å§‹ç‚¹ãŒå¸¸ã«Enemyã®é€²è¡Œæ–¹å‘ã«å‡ºã‚‹ã‚ˆã†ã«startpositionã‚’æ±ºã‚ã‚‹
         Vector3 startposition = tr.position + tr.right * groundChkDir * scale.x;
-        // startpostion‚©‚ç‘«Œ³‚Ü‚Å‚ğI“_‚Æ‚·‚é
+        // startpostionã‹ã‚‰è¶³å…ƒã¾ã§ã‚’çµ‚ç‚¹ã¨ã™ã‚‹
         Vector3 endposition = startposition - tr.up * (groundChkDir + 0.05f);
 
-        // Debug—p‚Én“_‚ÆI“_‚ğ•\¦‚·‚é
+        // Debugç”¨ã«å§‹ç‚¹ã¨çµ‚ç‚¹ã‚’è¡¨ç¤ºã™ã‚‹
         Debug.DrawLine(startposition, endposition, Color.red);
 
-        // Physics2D.Linecast‚ğg‚¢AƒxƒNƒgƒ‹‚ÆStageLayer‚ªÚG‚µ‚Ä‚¢‚½‚çTrue‚ğ•Ô‚·
+        // Physics2D.Linecastã‚’ä½¿ã„ã€ãƒ™ã‚¯ãƒˆãƒ«ã¨StageLayerãŒæ¥è§¦ã—ã¦ã„ãŸã‚‰Trueã‚’è¿”ã™
         return Physics2D.Linecast(startposition, endposition, chkLayer);
     }
 
@@ -87,7 +87,7 @@ public class GroundWallChk
         return Physics2D.Linecast(startposition, endposition, chkLayer);
     }
 
-    // •ûŒü“]Š·‚ğ‚·‚é
+    // æ–¹å‘è»¢æ›ã‚’ã™ã‚‹
     private float ChgDIrection()
     {
         if (chkType != Chk_TYPE.NONE)

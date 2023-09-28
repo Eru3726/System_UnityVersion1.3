@@ -3,37 +3,37 @@ using UnityEngine;
 [System.Serializable]
 public class RayLine
 {
-    [SerializeField, Header("ƒIƒuƒWƒFƒNƒg‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€")]
+    [SerializeField, Header("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ")]
     private Transform tr;
 
-    [SerializeField, Header("ƒ`ƒFƒbƒNƒŒƒCƒ„[")]
+    [SerializeField, Header("ãƒã‚§ãƒƒã‚¯ãƒ¬ã‚¤ãƒ¤ãƒ¼")]
     private LayerMask chkLayer;
 
-    [SerializeField, Header("ƒŒƒC‚Ìn“_"), Tooltip("ƒIƒuƒWƒFƒNƒg‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ğŠî€‚Éİ’è")]
+    [SerializeField, Header("ãƒ¬ã‚¤ã®å§‹ç‚¹"), Tooltip("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚’åŸºæº–ã«è¨­å®š")]
     private Vector3 startposition = new Vector3();
 
-    [SerializeField, Header("ƒŒƒC‚ÌI“_"), Tooltip("ƒIƒuƒWƒFƒNƒg‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€‚ğŠî€‚Éİ’è")]
+    [SerializeField, Header("ãƒ¬ã‚¤ã®çµ‚ç‚¹"), Tooltip("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ ã‚’åŸºæº–ã«è¨­å®š")]
     private Vector3 endposition = new Vector3();
 
-    [SerializeField, Header("ƒŒƒC‚Ì‰Â‹‰»")]
+    [SerializeField, Header("ãƒ¬ã‚¤ã®å¯è¦–åŒ–")]
     private bool rayFlg = false;
 
     public bool LineChk()
     {
         if (tr == null) return false;
-        // transform.localScale‚Ì³•‰‚É‚æ‚Á‚ÄEnemy‚ğx•ûŒü‚É”½“]‚·‚é
+        // transform.localScaleã®æ­£è² ã«ã‚ˆã£ã¦Enemyã‚’xæ–¹å‘ã«åè»¢ã™ã‚‹
         Vector3 scale = tr.localScale;
 
-        // n“_‚ªí‚ÉEnemy‚Ìis•ûŒü‚Éo‚é‚æ‚¤‚Éstartposition‚ğŒˆ‚ß‚é
+        // å§‹ç‚¹ãŒå¸¸ã«Enemyã®é€²è¡Œæ–¹å‘ã«å‡ºã‚‹ã‚ˆã†ã«startpositionã‚’æ±ºã‚ã‚‹
         Vector3 str = tr.position + new Vector3(startposition.x * scale.x, startposition.y * scale.y, startposition.z * scale.z);
 
-        // startpostion‚©‚ç‘«Œ³‚Ü‚Å‚ğI“_‚Æ‚·‚é
+        // startpostionã‹ã‚‰è¶³å…ƒã¾ã§ã‚’çµ‚ç‚¹ã¨ã™ã‚‹
         Vector3 end = str + new Vector3(endposition.x * scale.x, endposition.y * scale.y, endposition.z * scale.z);
 
-        // Debug—p‚Én“_‚ÆI“_‚ğ•\¦‚·‚é
+        // Debugç”¨ã«å§‹ç‚¹ã¨çµ‚ç‚¹ã‚’è¡¨ç¤ºã™ã‚‹
         if (rayFlg) Debug.DrawLine(str, end, Color.red);
 
-        // Physics2D.Linecast‚ğg‚¢AƒxƒNƒgƒ‹‚ÆStageLayer‚ªÚG‚µ‚Ä‚¢‚½‚çTrue‚ğ•Ô‚·
+        // Physics2D.Linecastã‚’ä½¿ã„ã€ãƒ™ã‚¯ãƒˆãƒ«ã¨StageLayerãŒæ¥è§¦ã—ã¦ã„ãŸã‚‰Trueã‚’è¿”ã™
         return Physics2D.Linecast(str, end, chkLayer);
     }
 }
