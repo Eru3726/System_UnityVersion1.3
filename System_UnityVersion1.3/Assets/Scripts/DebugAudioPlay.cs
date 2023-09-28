@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class DebugAudioPlay : MonoBehaviour
 {
-    [SerializeField,Header("SEƒTƒEƒ“ƒh")]
+    [SerializeField,Header("SEã‚µã‚¦ãƒ³ãƒ‰")]
     AudioSource seAudioSource;
 
     private void Start()
     {
-        Debug.Log("SpaceƒL[‚ÅSEÄ¶");
+        Debug.Log("Spaceã‚­ãƒ¼ã§SEå†ç”Ÿ");
     }
 
     void Update()

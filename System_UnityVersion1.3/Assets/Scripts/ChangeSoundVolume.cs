@@ -7,25 +7,25 @@ using System.Security.Cryptography;
 
 public class ChangeSoundVolume : MonoBehaviour
 {
-    [SerializeField,Header("ƒ~ƒLƒT[")]
+    [SerializeField,Header("ãƒŸã‚­ã‚µãƒ¼")]
     private AudioMixer audioMixer;
 
-    [SerializeField, Header("MASTERƒ{ƒŠƒ…[ƒ€ƒXƒ‰ƒCƒ_[")]
+    [SerializeField, Header("MASTERãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼")]
     private Slider masterSlider;
 
-    [SerializeField, Header("BGMƒ{ƒŠƒ…[ƒ€ƒXƒ‰ƒCƒ_[")]
+    [SerializeField, Header("BGMãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼")]
     private Slider bgmSlider;
 
-    [SerializeField, Header("SEƒ{ƒŠƒ…[ƒ€ƒXƒ‰ƒCƒ_[")]
+    [SerializeField, Header("SEãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼")]
     private Slider seSlider;
 
-    [SerializeField, Header("MASTERƒ~ƒ…[ƒgƒgƒOƒ‹")]
+    [SerializeField, Header("MASTERãƒŸãƒ¥ãƒ¼ãƒˆãƒˆã‚°ãƒ«")]
     private Toggle masterToggle;
 
-    [SerializeField, Header("BGMƒ~ƒ…[ƒgƒgƒOƒ‹")]
+    [SerializeField, Header("BGMãƒŸãƒ¥ãƒ¼ãƒˆãƒˆã‚°ãƒ«")]
     private Toggle bgmToggle;
 
-    [SerializeField, Header("SEƒ~ƒ…[ƒgƒgƒOƒ‹")]
+    [SerializeField, Header("SEãƒŸãƒ¥ãƒ¼ãƒˆãƒˆã‚°ãƒ«")]
     private Toggle seToggle;
 
     private void Start()
@@ -97,50 +97,50 @@ public class ChangeSoundVolume : MonoBehaviour
 
 
     /// <summary>
-    /// ƒZ[ƒu
+    /// ã‚»ãƒ¼ãƒ–
     /// </summary>
     public void Save()
     {
 #if UNITY_EDITOR
-        //UnityEditorã‚È‚ç
-        //Assetƒtƒ@ƒCƒ‹‚Ì’†‚ÌSaveƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //UnityEditorä¸Šãªã‚‰
+        //Assetãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­ã®Saveãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         string path = Application.dataPath + "/Save";
 
 #else
-        //‚»‚¤‚Å‚È‚¯‚ê‚Î
-        //.exe‚ª‚ ‚é‚Æ‚±‚ë‚ÉSaveƒtƒ@ƒCƒ‹‚ğì¬‚µ‚»‚±‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //ãã†ã§ãªã‘ã‚Œã°
+        //.exeãŒã‚ã‚‹ã¨ã“ã‚ã«Saveãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãã“ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         Directory.CreateDirectory("Save");
         string path = Directory.GetCurrentDirectory() + "/Save";
 
 #endif
 
-        //ƒZ[ƒuƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğİ’è
+        //ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’è¨­å®š
         string SaveFilePath = path + "/SoundVolume.bytes";
 
-        // ƒZ[ƒuƒf[ƒ^‚Ìì¬
+        // ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
         SaveData saveData = CreateSaveData();
 
-        // ƒZ[ƒuƒf[ƒ^‚ğJSONŒ`®‚Ì•¶š—ñ‚É•ÏŠ·
+        // ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’JSONå½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›
         string jsonString = JsonUtility.ToJson(saveData);
 
-        // •¶š—ñ‚ğbyte”z—ñ‚É•ÏŠ·
+        // æ–‡å­—åˆ—ã‚’byteé…åˆ—ã«å¤‰æ›
         byte[] bytes = Encoding.UTF8.GetBytes(jsonString);
 
-        // AESˆÃ†‰»
+        // AESæš—å·åŒ–
         byte[] arrEncrypted = AesEncrypt(bytes);
 
-        // w’è‚µ‚½ƒpƒX‚Éƒtƒ@ƒCƒ‹‚ğì¬
+        // æŒ‡å®šã—ãŸãƒ‘ã‚¹ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
         FileStream file = new FileStream(SaveFilePath, FileMode.Create, FileAccess.Write);
 
-        //ƒtƒ@ƒCƒ‹‚É•Û‘¶‚·‚é
+        //ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹
         try
         {
-            // ƒtƒ@ƒCƒ‹‚É•Û‘¶
+            // ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
             file.Write(arrEncrypted, 0, arrEncrypted.Length);
         }
         finally
         {
-            // ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+            // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
             if (file != null)
             {
                 file.Close();
@@ -150,52 +150,52 @@ public class ChangeSoundVolume : MonoBehaviour
 
 
     /// <summary>
-    /// ƒ[ƒh
+    /// ãƒ­ãƒ¼ãƒ‰
     /// </summary>
     public void Load()
     {
 #if UNITY_EDITOR
-        //UnityEditorã‚È‚ç
-        //Assetƒtƒ@ƒCƒ‹‚Ì’†‚ÌSaveƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //UnityEditorä¸Šãªã‚‰
+        //Assetãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­ã®Saveãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         string path = Application.dataPath + "/Save";
 
 #else
-        //‚»‚¤‚Å‚È‚¯‚ê‚Î
-        //.exe‚ª‚ ‚é‚Æ‚±‚ë‚ÉSaveƒtƒ@ƒCƒ‹‚ğì¬‚µ‚»‚±‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //ãã†ã§ãªã‘ã‚Œã°
+        //.exeãŒã‚ã‚‹ã¨ã“ã‚ã«Saveãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãã“ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         Directory.CreateDirectory("Save");
         string path = Directory.GetCurrentDirectory() + "/Save";
 
 #endif
 
-        //ƒZ[ƒuƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğİ’è
+        //ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’è¨­å®š
         string SaveFilePath = path + "/SoundVolume.bytes";
 
-        //ƒZ[ƒuƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©
+        //ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹
         if (File.Exists(SaveFilePath))
         {
-            //ƒtƒ@ƒCƒ‹ƒ‚[ƒh‚ğƒI[ƒvƒ“‚É‚·‚é
+            //ãƒ•ã‚¡ã‚¤ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã«ã™ã‚‹
             FileStream file = new FileStream(SaveFilePath, FileMode.Open, FileAccess.Read);
             try
             {
-                // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+                // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
                 byte[] arrRead = File.ReadAllBytes(SaveFilePath);
 
-                // •œ†‰»
+                // å¾©å·åŒ–
                 byte[] arrDecrypt = AesDecrypt(arrRead);
 
-                // byte”z—ñ‚ğ•¶š—ñ‚É•ÏŠ·
+                // byteé…åˆ—ã‚’æ–‡å­—åˆ—ã«å¤‰æ›
                 string decryptStr = Encoding.UTF8.GetString(arrDecrypt);
 
-                // JSONŒ`®‚Ì•¶š—ñ‚ğƒZ[ƒuƒf[ƒ^‚ÌƒNƒ‰ƒX‚É•ÏŠ·
+                // JSONå½¢å¼ã®æ–‡å­—åˆ—ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒ©ã‚¹ã«å¤‰æ›
                 SaveData saveData = JsonUtility.FromJson<SaveData>(decryptStr);
 
-                //ƒf[ƒ^‚Ì”½‰f
+                //ãƒ‡ãƒ¼ã‚¿ã®åæ˜ 
                 ReadData(saveData);
 
             }
             finally
             {
-                // ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+                // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
                 if (file != null)
                 {
                     file.Close();
@@ -204,8 +204,8 @@ public class ChangeSoundVolume : MonoBehaviour
         }
         else
         {
-            //ƒZ[ƒuƒtƒ@ƒCƒ‹‚ª‚È‚¢ê‡
-            //‰Šú‰»
+            //ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„å ´åˆ
+            //åˆæœŸåŒ–
             masterSlider.value = 0;
             bgmSlider.value = 0;
             seSlider.value = 0;
@@ -217,15 +217,15 @@ public class ChangeSoundVolume : MonoBehaviour
 
 
     /// <summary>
-    /// ƒZ[ƒuƒf[ƒ^‚Ìì¬
+    /// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
     /// </summary>
     /// <returns></returns>
     private SaveData CreateSaveData()
     {
-        //ƒZ[ƒuƒf[ƒ^‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‰»
+        //ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–
         SaveData saveData = new SaveData();
 
-        //ƒQ[ƒ€ƒf[ƒ^‚Ì’l‚ğƒZ[ƒuƒf[ƒ^‚É‘ã“ü
+        //ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®å€¤ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä»£å…¥
         //Master
         saveData.masVol = masterSlider.value;   
         saveData.masFlg = masterToggle.isOn;
@@ -242,7 +242,7 @@ public class ChangeSoundVolume : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒf[ƒ^‚Ì“Ç‚İ‚İi”½‰fj
+    /// ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ï¼ˆåæ˜ ï¼‰
     /// </summary>
     /// <param name="saveData"></param>
     private void ReadData(SaveData saveData)
@@ -295,12 +295,12 @@ public class ChangeSoundVolume : MonoBehaviour
 
 
     /// <summary>
-    ///  AesManagedƒ}ƒl[ƒWƒƒ[‚ğæ“¾
+    ///  AesManagedãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     private AesManaged GetAesManager()
     {
-        //”CˆÓ‚Ì”¼Šp‰p”16•¶š(Read.cs‚Æ“¯‚¶‚â‚Â‚É)
+        //ä»»æ„ã®åŠè§’è‹±æ•°16æ–‡å­—(Read.csã¨åŒã˜ã‚„ã¤ã«)
         string aesIv = "5467979454867416";
         string aesKey = "7875321532474526";
 
@@ -315,60 +315,60 @@ public class ChangeSoundVolume : MonoBehaviour
     }
 
     /// <summary>
-    /// AESˆÃ†‰»
+    /// AESæš—å·åŒ–
     /// </summary>
     /// <param name="byteText"></param>
     /// <returns></returns>
     public byte[] AesEncrypt(byte[] byteText)
     {
-        // AESƒ}ƒl[ƒWƒƒ[‚Ìæ“¾
+        // AESãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å–å¾—
         AesManaged aes = GetAesManager();
-        // ˆÃ†‰»
+        // æš—å·åŒ–
         byte[] encryptText = aes.CreateEncryptor().TransformFinalBlock(byteText, 0, byteText.Length);
 
         return encryptText;
     }
 
     /// <summary>
-    /// AES•œ†‰»
+    /// AESå¾©å·åŒ–
     /// </summary>
     /// <param name="byteText"></param>
     /// <returns></returns>
     public byte[] AesDecrypt(byte[] byteText)
     {
-        // AESƒ}ƒl[ƒWƒƒ[æ“¾
+        // AESãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å–å¾—
         var aes = GetAesManager();
-        // •œ†‰»
+        // å¾©å·åŒ–
         byte[] decryptText = aes.CreateDecryptor().TransformFinalBlock(byteText, 0, byteText.Length);
 
         return decryptText;
     }
 
     /// <summary>
-    /// ƒZ[ƒuƒf[ƒ^íœ
+    /// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
     /// </summary>
     public void Init()
     {
 #if UNITY_EDITOR
-        //UnityEditorã‚È‚ç
-        //Assetƒtƒ@ƒCƒ‹‚Ì’†‚ÌSaveƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //UnityEditorä¸Šãªã‚‰
+        //Assetãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­ã®Saveãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         string path = Application.dataPath + "/Save";
 
 #else
-        //‚»‚¤‚Å‚È‚¯‚ê‚Î
-        //.exe‚ª‚ ‚é‚Æ‚±‚ë‚ÉSaveƒtƒ@ƒCƒ‹‚ğì¬‚µ‚»‚±‚ÌƒpƒX‚ğ“ü‚ê‚é
+        //ãã†ã§ãªã‘ã‚Œã°
+        //.exeãŒã‚ã‚‹ã¨ã“ã‚ã«Saveãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãã“ã®ãƒ‘ã‚¹ã‚’å…¥ã‚Œã‚‹
         Directory.CreateDirectory("Save");
         string path = Directory.GetCurrentDirectory() + "/Save";
 
 #endif
 
-        //ƒtƒ@ƒCƒ‹íœ
+        //ãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤
         File.Delete(path + "/SoundVolume.bytes");
 
-        //ƒŠƒ[ƒh
+        //ãƒªãƒ­ãƒ¼ãƒ‰
         Load();
 
-        Debug.Log("ƒf[ƒ^‚Ì‰Šú‰»‚ªI‚í‚è‚Ü‚µ‚½");
+        Debug.Log("ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ãŒçµ‚ã‚ã‚Šã¾ã—ãŸ");
     }
 }
 
