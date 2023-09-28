@@ -4,11 +4,11 @@ public class Enemy : MonoBehaviour , IDamageable
 {
     public int Health => _health;
 
-    [SerializeField, Header("‘Ì—Í")]
+    [SerializeField, Header("ä½“åŠ›")]
     int _health = 1000;
 
     /// <summary>
-    /// ƒ_ƒ[ƒW—pŠÖ”
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸ç”¨é–¢æ•°
     /// </summary>
     /// <param name="value"></param>
     public void TakeDamage(int value)
@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour , IDamageable
         _health -= value;
         if (_health <= 0)
         {
-            // Health‚ª0‚É‚È‚Á‚½ê‡‚Ìˆ—
+            // HealthãŒ0ã«ãªã£ãŸå ´åˆã®å‡¦ç†
             Destroy(gameObject);
         }
 
-        //ƒ_ƒ[ƒW•\¦
+        //ãƒ€ãƒ¡ãƒ¼ã‚¸è¡¨ç¤º
         DamageTextSystem.instance.DamageText(value, this.gameObject);
     }
 }

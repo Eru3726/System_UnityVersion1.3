@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //IDamageable‚ªÀ‘•‚³‚ê‚Ä‚¢‚ê‚Î
+        //IDamageableãŒå®Ÿè£…ã•ã‚Œã¦ã„ã‚Œã°
         if (collision.TryGetComponent<IDamageable>(out IDamageable iDamageable)) iDamageable.TakeDamage(damage);
     }
 }

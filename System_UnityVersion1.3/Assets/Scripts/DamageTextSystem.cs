@@ -4,13 +4,13 @@ public class DamageTextSystem : MonoBehaviour
 {
     public static DamageTextSystem instance;
 
-    [SerializeField, Header("ƒeƒLƒXƒg‚ÌˆÚ“®‘¬“x")]
+    [SerializeField, Header("ãƒ†ã‚­ã‚¹ãƒˆã®ç§»å‹•é€Ÿåº¦")]
     private float textSpeed = 1f;
 
-    [SerializeField, Header("ƒtƒF[ƒhƒAƒEƒg‚Ì‘¬“x")]
+    [SerializeField, Header("ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®é€Ÿåº¦")]
     private float fadeOutSpeed = 2f;
 
-    [SerializeField, Header("ƒeƒLƒXƒgƒIƒuƒWƒFƒNƒg")]
+    [SerializeField, Header("ãƒ†ã‚­ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     private TextMesh damageTextObj;
 
     private void Awake()

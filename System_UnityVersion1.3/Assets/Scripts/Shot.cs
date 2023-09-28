@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
-    [SerializeField, Header("’e")]
+    [SerializeField, Header("å¼¾")]
     private GameObject bullet;
 
-    [SerializeField, Header("’e‚ÌƒXƒs[ƒh")]
+    [SerializeField, Header("å¼¾ã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float bulletSpeed = 5f;
 
-    [SerializeField, Header("’e‚Ìƒ_ƒ[ƒW—Ê")]
+    [SerializeField, Header("å¼¾ã®ãƒ€ãƒ¡ãƒ¼ã‚¸é‡")]
     private int damage = 100;
 
     public void Shoting()
