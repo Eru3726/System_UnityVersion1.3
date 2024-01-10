@@ -70,9 +70,3 @@ public class DataController : MonoBehaviour
     }
 }
 
-[Serializable]
-public class WebData
-{
-    public string key_0;
-    public string key_1;
-}
