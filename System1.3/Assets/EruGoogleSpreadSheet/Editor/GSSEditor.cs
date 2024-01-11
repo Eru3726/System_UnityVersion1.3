@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Networking;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -16,18 +15,15 @@ namespace EruGSS
         private static void Create()
         {
             // 生成
-            GSSEditor window = GetWindow<GSSEditor>("GoogleSpreadSheetEditor");
+            GSSEditor window = GetWindow<GSSEditor>("GSSEditor");
             // 最小サイズ設定
-            window.minSize = new Vector2(240, 240);
+            window.minSize = new Vector2(120, 140);
         }
 
-        //パス
-        private const string Sheet_URL = "https://docs.google.com/spreadsheets/d/1vr8VyfVVljjuivK-7xWlzGjb2FkDj8xRFXQhiYROego/edit?usp=sharing";        //GoogleSpreadSheetのURL
+        private PathScriptableObject pathScriptableObject;
 
-        private string[] Scripts_PATH = { "Assets/EruGoogleSpreadSheet/Scripts/GeneralParameter.cs",    //ScriptableObjectのスクリプトのパス
-                                      "Assets/EruGoogleSpreadSheet/Editor/GSSEditor.cs",            //Editorのスクリプトのパス
-                                      "Assets/EruGoogleSpreadSheet/Scripts/WebData.cs"              //WebDataのスクリプトのパス
-                                    };
+        //パスをまとめたスクリプタブルオブジェクトのパス
+        private string PathScriptableObject_PATH = "Assets/EruGoogleSpreadSheet/Resources/PathScriptableObject.asset";
 
         //スクロール
         private Vector2 scrollPos;
@@ -37,8 +33,11 @@ namespace EruGSS
         /// </summary>
         private void OnGUI()
         {
+            //スクロール
             using var scrollView = new EditorGUILayout.ScrollViewScope(scrollPos, GUILayout.Height(position.size.y));
             scrollPos = scrollView.scrollPosition;
+
+            LoadGSS loadGSS = new LoadGSS();
 
             Color defaultColor = GUI.backgroundColor;
 
@@ -49,10 +48,13 @@ namespace EruGSS
                 {
                     GUI.backgroundColor = Color.green;
 
-                    if (GUILayout.Button("シートを開く"))
+                    if (GUILayout.Button("GSSを開く"))
                     {
+                        //パスの更新
+                        pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
+
                         //パスのサイトを開く
-                        Application.OpenURL(Sheet_URL);
+                        Application.OpenURL(pathScriptableObject.Sheet_URL);
                     }
 
                     GUI.backgroundColor = defaultColor;
@@ -68,9 +70,12 @@ namespace EruGSS
 
                     if (GUILayout.Button("変数追加"))
                     {
-                        for (int i = 0; i < Scripts_PATH.Length; i++)
+                        //パスの更新
+                        pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
+
+                        for (int i = 0; i < pathScriptableObject.Scripts_PATH.Length; i++)
                         {
-                            Object o = AssetDatabase.LoadAssetAtPath(Scripts_PATH[i], typeof(Object)) as Object;
+                            Object o = AssetDatabase.LoadAssetAtPath(pathScriptableObject.Scripts_PATH[i], typeof(Object)) as Object;
                             if (o != null)
                             {
                                 // ファイルを選択(Projectウィンドウでファイルが選択状態になる)
@@ -79,6 +84,33 @@ namespace EruGSS
                                 // ファイルを開く(Visual Studioでファイルが開く)
                                 AssetDatabase.OpenAsset(o);
                             }
+                        }
+                    }
+
+                    GUI.backgroundColor = defaultColor;
+                }
+            }
+
+            //パスの変更をするためのボタン
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                using (new GUILayout.HorizontalScope(GUI.skin.box))
+                {
+                    GUI.backgroundColor = Color.blue;
+
+                    if (GUILayout.Button("パスの変更"))
+                    {
+                        //パスの更新
+                        pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
+
+                        Object o = AssetDatabase.LoadAssetAtPath(PathScriptableObject_PATH, typeof(Object)) as Object;
+                        if (o != null)
+                        {
+                            // ファイルを選択(Projectウィンドウでファイルが選択状態になる)
+                            Selection.activeObject = o;
+
+                            // ファイルを開く(Visual Studioでファイルが開く)
+                            AssetDatabase.OpenAsset(o);
                         }
                     }
 
@@ -96,8 +128,7 @@ namespace EruGSS
                     if (GUILayout.Button("データ反映"))
                     {
                         //読み込み
-                        Load load = new Load();
-                        load.DataLoad();
+                        loadGSS.DataLoad();
 
                         // エディタを最新の状態にする
                         AssetDatabase.Refresh();
@@ -106,53 +137,6 @@ namespace EruGSS
                     GUI.backgroundColor = defaultColor;
                 }
             }
-        }
-    }
-
-    /// <summary>
-    /// データを反映させるクラス
-    /// </summary>
-    class Load
-    {
-        private GeneralParameter generalParameter;
-        private const string GeneralParameter_PATH = "Assets/EruGoogleSpreadSheet/Resources/GeneralParameter.asset";     //ScriptableObjectのパス
-        private const string GAS_URL = "https://script.google.com/macros/s/AKfycbxPNZ55uREmAdtvbiR6gUnKN3O3M4tchRBwuFq85mDV2CrKepif7SQqwNNb6Wg2nwrH5g/exec";       //シートのGoogleAddScriptのURL
-
-        public void DataLoad()
-        {
-            generalParameter = AssetDatabase.LoadAssetAtPath<GeneralParameter>(GeneralParameter_PATH);
-            UnityWebRequest req = UnityWebRequest.Get(GAS_URL);
-            req.SendWebRequest();
-
-            while (!req.isDone)
-            {
-                // リクエストが完了するのを待機
-            }
-
-            if (IsWebRequestSuccessful(req))
-            {
-                //データを変換
-                var data = JsonUtility.FromJson<WebData>(req.downloadHandler.text);
-
-                //変数に反映
-                generalParameter.param_0 = (int)float.Parse(data.key_0);
-                generalParameter.param_1 = float.Parse(data.key_1);
-                generalParameter.param_2 = float.Parse(data.key_2);
-                generalParameter.param_3 = float.Parse(data.key_3);
-                generalParameter.param_4 = float.Parse(data.key_4);
-            }
-            else
-            {
-                Debug.Log("error");
-            }
-        }
-
-        //リクエストが成功したかどうか判定する関数
-        bool IsWebRequestSuccessful(UnityWebRequest req)
-        {
-            //プロトコルエラーとコネクトエラーではない場合はtrueを返す
-            return req.result != UnityWebRequest.Result.ProtocolError &&
-                   req.result != UnityWebRequest.Result.ConnectionError;
         }
     }
 }
