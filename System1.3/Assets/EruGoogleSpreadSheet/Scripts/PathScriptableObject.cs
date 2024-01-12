@@ -1,19 +1,20 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/PathScriptableObject")]
-public class PathScriptableObject : ScriptableObject
+namespace EruGSS
 {
-    [Header("GSSのURL")]
-    public string Sheet_URL;
+    [CreateAssetMenu(menuName = "ScriptableObjects/PathScriptableObject")]
+    public class PathScriptableObject : ScriptableObject
+    {
+        [Header("GSSのURL")]
+        public string Sheet_URL;
 
-    [Header("GASのURL")]
-    public string GAS_URL;
+        [Header("GASのURL")]
+        public string GAS_URL;
 
-    [Header("GeneralParameter.assetのパス")]
-    public string GeneralParameter_PATH;
+        [Header("GeneralParameter.assetのパス")]
+        public string GeneralParameter_PATH;
 
-    [Header("変数を追加するための変数のパス")]
-    public string[] Scripts_PATH = new string[3];
+        [Header("変数を追加するための変数のパス")]
+        public string[] Scripts_PATH = new string[3];
+    }
 }
-
-

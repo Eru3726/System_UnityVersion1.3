@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PathScriptableObject
   m_EditorClassIdentifier: 
   Sheet_URL: https://docs.google.com/spreadsheets/d/1tbcuhb_EoQytjWoIj211bD4SIW6vTfdHFL8i2g6a-T4/edit?usp=sharing
-  GAS_URL: https://script.google.com/macros/s/AKfycbxyvrdiz4Rrdkzyu1jdqgHqpYO-4rWwbXnRWwx_O0NmJwwZJIbj5pdljzlwMV7eaY-xvg/exec
+  GAS_URL: https://script.google.com/macros/s/AKfycbwZzVz467XWIPEqdUxqChu-n8Bh9znTnjAizHxuWg_yVkPQ5OAnx7Ok4aWv7SouWTu3nw/exec
   GeneralParameter_PATH: Assets/EruGoogleSpreadSheet/Resources/GeneralParameter.asset
   Scripts_PATH:
   - Assets/EruGoogleSpreadSheet/Scripts/GeneralParameter.cs

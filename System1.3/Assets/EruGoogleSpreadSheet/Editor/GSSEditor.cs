@@ -11,13 +11,13 @@ namespace EruGSS
         /// <summary>
         /// エディタの作成
         /// </summary>
-        [MenuItem("Editor/GoogleSpreadSheetEditor")]
+        [MenuItem("Window/GoogleSpreadSheetEditor")]
         private static void Create()
         {
             // 生成
             GSSEditor window = GetWindow<GSSEditor>("GSSEditor");
             // 最小サイズ設定
-            window.minSize = new Vector2(120, 140);
+            window.minSize = new Vector2(220, 190);
         }
 
         private PathScriptableObject pathScriptableObject;
@@ -27,6 +27,9 @@ namespace EruGSS
 
         //スクロール
         private Vector2 scrollPos;
+
+        //シートの名前
+        private string sheet_Name = "Sample";
 
         /// <summary>
         /// レイアウト
@@ -66,7 +69,7 @@ namespace EruGSS
             {
                 using (new GUILayout.HorizontalScope(GUI.skin.box))
                 {
-                    GUI.backgroundColor = Color.cyan;
+                    GUI.backgroundColor = Color.yellow;
 
                     if (GUILayout.Button("変数追加"))
                     {
@@ -75,7 +78,7 @@ namespace EruGSS
 
                         for (int i = 0; i < pathScriptableObject.Scripts_PATH.Length; i++)
                         {
-                            Object o = AssetDatabase.LoadAssetAtPath(pathScriptableObject.Scripts_PATH[i], typeof(Object)) as Object;
+                            Object o = AssetDatabase.LoadAssetAtPath<Object>(pathScriptableObject.Scripts_PATH[i]);
                             if (o != null)
                             {
                                 // ファイルを選択(Projectウィンドウでファイルが選択状態になる)
@@ -123,12 +126,12 @@ namespace EruGSS
             {
                 using (new GUILayout.HorizontalScope(GUI.skin.box))
                 {
-                    GUI.backgroundColor = Color.magenta;
+                    GUI.backgroundColor = Color.red;
 
                     if (GUILayout.Button("データ反映"))
                     {
                         //読み込み
-                        loadGSS.DataLoad();
+                        loadGSS.DataLoad(sheet_Name);
 
                         // エディタを最新の状態にする
                         AssetDatabase.Refresh();
@@ -136,6 +139,13 @@ namespace EruGSS
 
                     GUI.backgroundColor = defaultColor;
                 }
+            }
+
+            //反映させたいシート名の入力欄
+            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                EditorGUILayout.LabelField("シート名", EditorStyles.boldLabel);
+                sheet_Name = EditorGUILayout.TextField("", sheet_Name);
             }
         }
     }

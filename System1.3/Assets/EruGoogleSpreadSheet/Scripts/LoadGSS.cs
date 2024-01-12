@@ -15,13 +15,13 @@ namespace EruGSS
         //パスをまとめたスクリプタブルオブジェクトのパス
         private string PathScriptableObject_PATH = "Assets/EruGoogleSpreadSheet/Resources/PathScriptableObject.asset";
 
-        public void DataLoad()
+        public void DataLoad(string sheetName)
         {
             pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
             generalParameter = AssetDatabase.LoadAssetAtPath<GeneralParameter>(pathScriptableObject.GeneralParameter_PATH);
 
             //URLへアクセス
-            UnityWebRequest req = UnityWebRequest.Get(pathScriptableObject.GAS_URL);
+            UnityWebRequest req = UnityWebRequest.Get(pathScriptableObject.GAS_URL + "?sheetName=" + sheetName);
             req.SendWebRequest();
 
             while (!req.isDone)
@@ -35,6 +35,18 @@ namespace EruGSS
             else Debug.Log("Error Request Failed");
         }
 
+        //リクエストが成功したかどうか判定する関数
+        private bool IsWebRequestSuccessful(UnityWebRequest req)
+        {
+            //プロトコルエラーとコネクトエラーではない場合はtrueを返す
+            return req.result != UnityWebRequest.Result.ProtocolError &&
+                   req.result != UnityWebRequest.Result.ConnectionError;
+        }
+
+        /// <summary>
+        /// 変数の反映
+        /// </summary>
+        /// <param name="data"></param>
         private void ReflectData(WebData data)
         {
             generalParameter.param_0 = (int)float.Parse(data.key_0);
@@ -43,14 +55,6 @@ namespace EruGSS
             generalParameter.param_3 = float.Parse(data.key_3);
             generalParameter.param_4 = float.Parse(data.key_4);
             Debug.Log("GSS反映完了");
-        }
-
-        //リクエストが成功したかどうか判定する関数
-        private bool IsWebRequestSuccessful(UnityWebRequest req)
-        {
-            //プロトコルエラーとコネクトエラーではない場合はtrueを返す
-            return req.result != UnityWebRequest.Result.ProtocolError &&
-                   req.result != UnityWebRequest.Result.ConnectionError;
         }
     }
 }
