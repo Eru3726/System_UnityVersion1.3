@@ -71,7 +71,7 @@ namespace EruGSS
                 {
                     GUI.backgroundColor = Color.yellow;
 
-                    if (GUILayout.Button("変数追加"))
+                    if (GUILayout.Button("変数の追加"))
                     {
                         //パスの更新
                         pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
@@ -128,7 +128,7 @@ namespace EruGSS
                 {
                     GUI.backgroundColor = Color.red;
 
-                    if (GUILayout.Button("データ反映"))
+                    if (GUILayout.Button("データの反映"))
                     {
                         //読み込み
                         loadGSS.DataLoad(sheet_Name);

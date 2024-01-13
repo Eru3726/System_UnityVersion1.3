@@ -23,7 +23,7 @@ namespace EruGSS
             //URLへアクセス
             UnityWebRequest req = UnityWebRequest.Get(pathScriptableObject.GAS_URL + "?sheetName=" + sheetName);
             req.SendWebRequest();
-
+            
             while (!req.isDone)
             {
                 // リクエストが完了するのを待機
@@ -49,11 +49,12 @@ namespace EruGSS
         /// <param name="data"></param>
         private void ReflectData(WebData data)
         {
-            generalParameter.param_0 = (int)float.Parse(data.key_0);
-            generalParameter.param_1 = float.Parse(data.key_1);
-            generalParameter.param_2 = float.Parse(data.key_2);
-            generalParameter.param_3 = float.Parse(data.key_3);
-            generalParameter.param_4 = float.Parse(data.key_4);
+            //変数の型によって変える必要あり
+            generalParameter.intParam = (int)float.Parse(data.key_0);              //int型の場合
+            generalParameter.floatParam = float.Parse(data.key_1);                 //float型の場合
+            generalParameter.stringParam = data.key_2;                             //string型の場合
+            generalParameter.boolParam = data.key_3 == "true" ? true : false;      //bool型の場合
+
             Debug.Log("GSS反映完了");
         }
     }

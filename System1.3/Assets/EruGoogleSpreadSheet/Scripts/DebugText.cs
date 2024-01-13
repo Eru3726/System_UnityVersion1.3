@@ -4,21 +4,20 @@ using UnityEngine.UI;
 public class DebugText : MonoBehaviour
 {
     [SerializeField]
-    private GeneralParameter generalParameter;
+    private GeneralParameter generalParameter;  //GSSから受け取ったデータが入ったScriptableObject
 
     private Text text;
+
     void Start()
     {
         text = GetComponent<Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        text.text = generalParameter.param_0.ToString() + "\n" +
-                    generalParameter.param_1.ToString() + "\n" +
-                    generalParameter.param_2.ToString() + "\n" +
-                    generalParameter.param_3.ToString() + "\n" +
-                    generalParameter.param_4.ToString();
+        text.text = generalParameter.intParam.ToString() + "\n" +
+                    generalParameter.floatParam.ToString() + "\n" +
+                    generalParameter.stringParam.ToString() + "\n" +
+                    generalParameter.boolParam.ToString();
     }
 }
