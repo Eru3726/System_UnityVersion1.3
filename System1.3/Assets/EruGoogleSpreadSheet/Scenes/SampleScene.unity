@@ -337,7 +337,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 61
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279b3f147538fe547941c58ad024e46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalParameter: {fileID: 11400000, guid: c4b6fe7efcb027c4ba7fbfc116ece37b, type: 2}
+  sample1Data: {fileID: 11400000, guid: c50c51d9c8bc53d4981d9121330f8346, type: 2}
+  sample2Data: {fileID: 11400000, guid: 0b0611bc1df68c54a9e81d153127e90d, type: 2}
 --- !u!1 &1574231650
 GameObject:
   m_ObjectHideFlags: 0

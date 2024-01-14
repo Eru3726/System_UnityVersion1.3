@@ -5,9 +5,17 @@ namespace EruGSS
     {
         //変数名はGSSのA列で指定した変数名と揃えること
         //必ずstring型
-        public string key_0;
-        public string key_1;
-        public string key_2;
-        public string key_3;
+
+        //Sample1シートのデータ
+        public string Sample1_0;
+        public string Sample1_1;
+        public string Sample1_2;
+        public string Sample1_3;
+
+        //Sample2シートのデータ
+        public string Sample2_0;
+        public string Sample2_1;
+        public string Sample2_2;
+        public string Sample2_3;
     }
 }

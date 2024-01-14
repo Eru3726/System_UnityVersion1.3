@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71d95231672a22244a1a8128e91bb8ff, type: 3}
-  m_Name: GeneralParameter
+  m_Name: Sample1Data
   m_EditorClassIdentifier: 
-  param_0: 90
-  param_1: 55
-  param_2: 36
-  param_3: 462
-  param_4: 53
+  int1Param: 0
+  float1Param: 0
+  string1Param: 
+  bool1Param: 0

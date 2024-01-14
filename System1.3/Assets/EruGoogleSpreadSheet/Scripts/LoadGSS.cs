@@ -9,21 +9,20 @@ namespace EruGSS
 {
     public class LoadGSS
     {
-        private GeneralParameter generalParameter;
+        private Sample1Data sample1Data;
+        private Sample2Data sample2Data;
         private PathScriptableObject pathScriptableObject;
 
-        //パスをまとめたスクリプタブルオブジェクトのパス
-        private string PathScriptableObject_PATH = "Assets/EruGoogleSpreadSheet/Resources/PathScriptableObject.asset";
-
-        public void DataLoad(string sheetName)
+        public void DataLoad(string pso)
         {
-            pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(PathScriptableObject_PATH);
-            generalParameter = AssetDatabase.LoadAssetAtPath<GeneralParameter>(pathScriptableObject.GeneralParameter_PATH);
+            pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(pso);
+            sample1Data = AssetDatabase.LoadAssetAtPath<Sample1Data>(pathScriptableObject.DataScriptableObject_PATH[0]);
+            sample2Data = AssetDatabase.LoadAssetAtPath<Sample2Data>(pathScriptableObject.DataScriptableObject_PATH[1]);
 
             //URLへアクセス
-            UnityWebRequest req = UnityWebRequest.Get(pathScriptableObject.GAS_URL + "?sheetName=" + sheetName);
+            UnityWebRequest req = UnityWebRequest.Get(pathScriptableObject.GAS_URL);
             req.SendWebRequest();
-            
+
             while (!req.isDone)
             {
                 // リクエストが完了するのを待機
@@ -50,10 +49,17 @@ namespace EruGSS
         private void ReflectData(WebData data)
         {
             //変数の型によって変える必要あり
-            generalParameter.intParam = (int)float.Parse(data.key_0);              //int型の場合
-            generalParameter.floatParam = float.Parse(data.key_1);                 //float型の場合
-            generalParameter.stringParam = data.key_2;                             //string型の場合
-            generalParameter.boolParam = data.key_3 == "true" ? true : false;      //bool型の場合
+            //Sample1シートのデータを反映
+            sample1Data.int1Param = (int)float.Parse(data.Sample1_0);              //int型の場合
+            sample1Data.float1Param = float.Parse(data.Sample1_1);                 //float型の場合
+            sample1Data.string1Param = data.Sample1_2;                             //string型の場合
+            sample1Data.bool1Param = data.Sample1_3 == "true" ? true : false;      //bool型の場合
+
+            //Sample2シートのデータを反映
+            sample2Data.int2Param = (int)float.Parse(data.Sample2_0);
+            sample2Data.float2Param = float.Parse(data.Sample2_1);
+            sample2Data.string2Param = data.Sample2_2;
+            sample2Data.bool2Param = data.Sample2_3 == "true" ? true : false;
 
             Debug.Log("GSS反映完了");
         }

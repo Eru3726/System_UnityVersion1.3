@@ -4,7 +4,10 @@ using UnityEngine.UI;
 public class DebugText : MonoBehaviour
 {
     [SerializeField]
-    private GeneralParameter generalParameter;  //GSSから受け取ったデータが入ったScriptableObject
+    private Sample1Data sample1Data;  //GSSから受け取ったデータが入ったScriptableObject
+
+    [SerializeField]
+    private Sample2Data sample2Data;  
 
     private Text text;
 
@@ -15,9 +18,15 @@ public class DebugText : MonoBehaviour
 
     void Update()
     {
-        text.text = generalParameter.intParam.ToString() + "\n" +
-                    generalParameter.floatParam.ToString() + "\n" +
-                    generalParameter.stringParam.ToString() + "\n" +
-                    generalParameter.boolParam.ToString();
+        text.text = "Sample1Data\n" +
+                    sample1Data.int1Param.ToString() + "\n" +
+                    sample1Data.float1Param.ToString() + "\n" +
+                    sample1Data.string1Param.ToString() + "\n" +
+                    sample1Data.bool1Param.ToString() + "\n" +
+                    "Sample2Data\n" +
+                    sample2Data.int2Param.ToString() + "\n" +
+                    sample2Data.float2Param.ToString() + "\n" +
+                    sample2Data.string2Param.ToString() + "\n" +
+                    sample2Data.bool2Param.ToString();
     }
 }
