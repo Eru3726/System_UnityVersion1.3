@@ -107,6 +107,9 @@ A列には変数名、B列にはその変数に入れたい値を入力してく
 新しいデプロイを選択してください。
 その後、種類の選択からウェブアプリを選択し、アクセスできるユーザーを
 全員にしデプロイを押してください。
+初回はアクセス承認が求められると思うので、自分のアカウントでアクセス承認してください。
+警告マークのページは左下のAdvancedを選択し、Go to 無題のプロジェクト (unsafe)を選択してください。
+次のページのAllowをクリックするとアクセス承認が完了します。
 デプロイ後に表示されるウェブアプリのURL( https://script.google.comで始まるやつ)をコピーし、
 Unity内にあるPathScriptableObject.assetのGASのURLの欄に記入してください。
 PathScriptableObject.assetはGSSEditorのパスの変更ボタンを押すと開けます。
@@ -115,6 +118,8 @@ PathScriptableObject.assetはGSSEditorのパスの変更ボタンを押すと開
 
 /*更新履歴*/
 v1.0.0 GSSEditor完成		24.01.14.00.43
+
+v1.0.1 Readme更新			24.01.14.08.51
 
 
 
