@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//menuNameのSample1Dataのところは別の名前に変えてください
 [CreateAssetMenu(menuName = "ScriptableObjects/Sample1Data")]
 public class Sample1Data : ScriptableObject
 {

@@ -16,6 +16,9 @@ namespace EruGSS
         public void DataLoad(string pso)
         {
             pathScriptableObject = AssetDatabase.LoadAssetAtPath<PathScriptableObject>(pso);
+
+            //シート番号を配列の要素番号に入れてください。
+            //一番左のシートが0番
             sample1Data = AssetDatabase.LoadAssetAtPath<Sample1Data>(pathScriptableObject.DataScriptableObject_PATH[0]);
             sample2Data = AssetDatabase.LoadAssetAtPath<Sample2Data>(pathScriptableObject.DataScriptableObject_PATH[1]);
 

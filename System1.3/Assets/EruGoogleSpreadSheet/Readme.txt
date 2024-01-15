@@ -15,8 +15,8 @@
 
 
 
-/*GeneralParameter.assetの使用方法*/
-GeneralParameter.assetをアタッチすれば使用することができます。
+/*受け取ったデータの使用方法*/
+データを受け取ったScriptableObjectをアタッチすれば使用することができます。
 詳しくは付属されているSampleSceneとDebugText.csをご覧ください。
 
 
@@ -38,16 +38,12 @@ PathScriptableObject.assetに設定したスクリプトを開きます。
 *パスの変更*
 パスを変更するためのPathScriptableObjectを開くボタンです。
 パスやURLが変更された際はこちらから書き換えてください。
+PathScriptableObject.assetの場所を変えた際はGSSEditor.csの、
+PathScriptableObject_PATHに新しいパスを入れてください。
 
 *データの反映*
 データを反映するボタンです。
-シート名の入力欄に書かれているシートのデータを反映します。
-シート名がない場合はエラーが発生します。
-
-*シート名*
-反映させたいシート名を記入する欄です。
-存在しないシート名を入力すると、
-反映ボタンを押した際エラーが発生します。
+全シートのデータを反映します。
 
 
 
@@ -61,11 +57,10 @@ GASのURLにはGoogleAppsScriptのデプロイ時に入手できる
 ウェブアプリのURLを記入してください。
 詳しくは＜Googleスプレッドシートの設定＞をご覧ください。
 
-GeneralParameter.assetのパスにはUnity内のGeneralParameter.assetのパスを入力してください。
-基本触らなくていいですが、GeneralParameter.assetの場所を変更した際は変更してください。
+DataScriptableObjectのパスにはDataを入れたいScriptableObjectのパスを入力してください。
+新しくScriptableObjectを追加したら、パスも追加してください。
 
-変数を追加するためのスクリプトのパスにはWebData.cs, LoadGSS.cs, GeneralParameter.csの
-三つのパスを入力してください。
+変数を追加するためのスクリプトのパスにはWebData.cs, LoadGSS.csのパスを入力してください。
 基本触らなくていいですが、スクリプトの場所を変更した際は変更してください。
 
 
@@ -74,21 +69,29 @@ GeneralParameter.assetのパスにはUnity内のGeneralParameter.assetのパス�
 変数を追加する際は、以下の手順に沿って追加してください。
 
 1. GSSEditorの中にある*変数の追加*と書かれたボタンを押すか、
-   WebData.cs, LoadGSS.cs, GeneralParameter.csの三つを開いてください。
+   WebData.cs, LoadGSS.cs, Dataを入れたいScriptableObjectのScriptの三つを開いてください。
 
 2. WebData.csはGoogleスプレッドシートのA列に入力した変数名と同じ
    名前でstring型の変数を作成してください。
 
-3. LoadGSS.csはReflectData()の中身を書き換える必要があります。
-   GeneralParameter.csの変数にWebData.csの変数を代入してください。
+3. LoadGSS.csはScriptableObjectのパスとReflectData()の中身を書き換える必要があります。
+   Dataを入れたいScriptableObjectの変数にWebData.csの変数を代入してください。
    変数の型によって書き換える必要があるので以下を参考に書いてください。
+   
+   sample1Data.int1Param = (int)float.Parse(data.Sample1_0);              //int型の場合
+   sample1Data.float1Param = float.Parse(data.Sample1_1);                 //float型の場合
+   sample1Data.string1Param = data.Sample1_2;                             //string型の場合
+   sample1Data.bool1Param = data.Sample1_3 == "true" ? true : false;      //bool型の場合
 
-   generalParameter.intParam = (int)float.Parse(data.key_0);              //int型の場合
-   generalParameter.floatParam = float.Parse(data.key_1);                 //float型の場合
-   generalParameter.stringParam = data.key_2;                             //string型の場合
-   generalParameter.boolParam = data.key_3 == "true" ? true : false;      //bool型の場合
+   ScriptableObjectのパスは以下を参考にして書き換えてください。
+   
+   //シート番号を配列の要素番号に入れてください。
+   //一番左のシートが0番
+   sample1Data = AssetDatabase.LoadAssetAtPath<Sample1Data>(pathScriptableObject.DataScriptableObject_PATH[0]);
+   sample2Data = AssetDatabase.LoadAssetAtPath<Sample2Data>(pathScriptableObject.DataScriptableObject_PATH[1]);
 
-4. GeneralParameter.csはゲーム内で使用する変数を作成してください。
+4. Dataを入れたいScriptableObjectのScriptはゲーム内で使用する変数を作成してください。
+   Sample1Data.csを参考にして作成してください。
    必ずpublicにしてください。変数名や型は自由です。
 
 
@@ -117,9 +120,11 @@ PathScriptableObject.assetはGSSEditorのパスの変更ボタンを押すと開
 
 
 /*更新履歴*/
-v1.0.0 GSSEditor完成		24.01.14.00.43
+v1.0.0 GSSEditor完成								24.01.14.00.43
 
-v1.0.1 Readme更新			24.01.14.08.51
+v1.0.1 Readme更新									24.01.14.08.51
+
+v1.1.0 全シートのデータを取得するシステムに変更		24.01.15.10.48
 
 
 

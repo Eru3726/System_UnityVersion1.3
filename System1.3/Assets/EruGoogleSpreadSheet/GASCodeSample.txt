@@ -1,49 +1,45 @@
-//データ取得
+// データ取得
 function doGet(e) {
   let out;
-  
-  //GSSのデータを取得する
-  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
 
-  // シート名をUnityから取得
-  var sheetName = e.parameter.sheetName;
-  var sheet = spreadsheet.getSheetByName(sheetName);
-
-  //シート名が存在しない場合はエラー
-  if (!sheet) {
-    return ContentService.createTextOutput("Error: Sheet not found");
-  }
-
-  //行（横軸）と列（縦軸）の最大数を取得
-  var maxRow = sheet.getLastRow();
-  var maxColumn = sheet.getLastColumn();
-
-  //JSON用のkey
-  var keys = [];
+  // シートの数を取得
+  var sheetCount = SpreadsheetApp.getActiveSpreadsheet().getNumSheets();
 
   //データ格納配列
   var data = {};
+  
+  // 全シートに対してデータを取得
+  for (var i = 0; i < sheetCount; i++) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[i];
 
-  //1行目のkeyの名前取得 keyの行を変更したい場合はxと引数を変更
-  //JSON用のラベルは1行目で指定しているため【getRange】の第1引数は【1】
-  for (var x = 1; x <= maxColumn; x++) {
-    keys.push(sheet.getRange(1, x).getValue());
-  }
+    //行（横軸）と列（縦軸）の最大数を取得
+    var maxRow = sheet.getLastRow();
+    var maxColumn = sheet.getLastColumn();
 
-  //データの取得
-  //実際のデータが2行目からなので【y = 2】から開始
-  for (var y = 2; y <= maxRow; y++) {
-    // var json_shop_id = {};
-    
-    
+    //JSON用のkey
+    var keys = [];
+
+    //1行目のkeyの名前取得 keyの行を変更したい場合はxと引数を変更
+    //JSON用のラベルは1行目で指定しているため【getRange】の第1引数は【1】
     for (var x = 1; x <= maxColumn; x++) {
-      var json = sheet.getRange(y, x).getValue();
+      keys.push(sheet.getRange(1, x).getValue());
     }
-    //データ格納
-    var id = sheet.getRange(y, 1).getValue();
-    data[id] = json;
+
+    //データの取得
+    //実際のデータが2行目からなので【y = 2】から開始
+    for (var y = 2; y <= maxRow; y++) {
+      // var json_shop_id = {};
+
+      for (var x = 1; x <= maxColumn; x++) {
+        var json = sheet.getRange(y, x).getValue();
+      }
+      //データ格納
+      var id = sheet.getRange(y, 1).getValue();
+      data[id] = json;
+    }
   }
+
   out = ContentService.createTextOutput(JSON.stringify(data, null, '\t'));
-  //整形してテキストにします
+  // 整形してテキストにします
   return out;
 }
