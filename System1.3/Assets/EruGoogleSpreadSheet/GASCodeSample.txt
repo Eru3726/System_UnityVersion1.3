@@ -1,5 +1,5 @@
 // データ取得
-function doGet(e) {
+function doGet() {
   let out;
 
   // シートの数を取得
@@ -16,25 +16,16 @@ function doGet(e) {
     var maxRow = sheet.getLastRow();
     var maxColumn = sheet.getLastColumn();
 
-    //JSON用のkey
-    var keys = [];
-
-    //1行目のkeyの名前取得 keyの行を変更したい場合はxと引数を変更
-    //JSON用のラベルは1行目で指定しているため【getRange】の第1引数は【1】
-    for (var x = 1; x <= maxColumn; x++) {
-      keys.push(sheet.getRange(1, x).getValue());
-    }
-
     //データの取得
     //実際のデータが2行目からなので【y = 2】から開始
     for (var y = 2; y <= maxRow; y++) {
       // var json_shop_id = {};
 
-      for (var x = 1; x <= maxColumn; x++) {
+      for (var x = 2; x < maxColumn; x++) {
         var json = sheet.getRange(y, x).getValue();
       }
       //データ格納
-      var id = sheet.getRange(y, 1).getValue();
+      var id = sheet.getRange(y, 2).getValue();
       data[id] = json;
     }
   }
